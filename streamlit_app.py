@@ -34,10 +34,23 @@ with aba_pedido:
             projeto = st.text_input("Qual Projeto?")
             
         with col2:
-            tipo_demanda = st.selectbox(
-                "O que você precisa?", 
-                ["Nova Tela (UI)", "Ajuste de Fluxo (UX)", "Review de Design", "Protótipo", "Bug Visual"]
-            )
+            demanda_opcoes = [
+                "Nova Tela (Design System Gov.br)",
+                "Opinião de Ux/Ui",
+                "Jornada do Usuário",
+                "Sustentação (Legado)",
+                "Problemas no figma",
+                "Ajustes de protótipo/ Bug Visual",
+                "Melhorias em telas ja feitas",
+                "Outro (Escrever)"
+            ]
+            
+            demanda_selecionada = st.selectbox("O que você precisa?", demanda_opcoes)
+            
+            demanda_final = demanda_selecionada
+            if demanda_selecionada == "Outro (Escrever)":
+                demanda_final = st.text_input("Descreva o tipo de demanda:")
+            
             prioridade = st.select_slider(
                 "Prioridade", 
                 options=["Baixa", "Média", "Alta", "Pra ontem 🔥"]
