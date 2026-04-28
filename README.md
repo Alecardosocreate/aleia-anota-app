@@ -15,7 +15,6 @@ Desenvolvido com uma interface "vibe code" e minimalista, o aplicativo permite q
 
 * **[Streamlit](https://streamlit.io/):** Framework principal para construção da interface Web em Python.
 * **Pandas:** Para manipulação e exibição dos dados na tabela de fila.
-* **Streamlit GSheetsConnection:** Para integração com o Google Sheets.
 
 ---
 

@@ -57,11 +57,8 @@ with aba_pedido:
             )
 
         descricao = st.text_area("Descreva o que precisa (pode colar links aqui)")
-        
-        # Campo de Upload
         arquivo = st.file_uploader("Anexar print, doc ou rascunho (opcional)", type=['png', 'jpg', 'pdf', 'docx'])
 
-        # Botão de Envio
         submitted = st.form_submit_button("Enviar Solicitação ✨")
 
         if submitted:
@@ -75,17 +72,15 @@ with aba_pedido:
     
     st.markdown("### Vamos conversar?")
     
-    # SEU E-MAIL
-try:
+    # SEU E-MAIL PROTEGIDO
+    try:
         meu_email_mma = st.secrets["email_mma"]
-except FileNotFoundError:
-        st.error("Configure o secrets.toml para o botão funcionar!")
+    except:
         meu_email_mma = "erro@configuracao.com"
 
-col_ag1 = st.columns(1)[0] # O [0] pega a primeira coluna da lista
+    col_ag1 = st.columns(1)[0]
 
-with col_ag1:
-        # Link que abre direto o chat do Teams com você
+    with col_ag1:
         link_teams = f"https://teams.microsoft.com/l/chat/0/0?users={meu_email_mma}"
         st.link_button("💬 Chamar no Chat (Teams)", link_teams)
 
@@ -96,19 +91,15 @@ with aba_fila:
     st.markdown("### Fila de Prioridades da Ale")
     st.caption("Acompanhe aqui o status do seu pedido.")
 
-    # --- DADOS MOCKADOS (DE MENTIRINHA) PARA VISUALIZAÇÃO ---
-    # Como ainda não ligamos num banco de dados, criei essa lista fixa 
-    # só pra você ver como vai ficar o layout.
+    # Dados de exemplo apenas para ver o layout
     dados_exemplo = [
         {"Data": "15/01", "Solicitante": "Carlos (Dev)", "Projeto": "App Mobile", "Demanda": "Tela Login", "Prioridade": "Alta", "Status": "🏃‍♀️ Em Andamento"},
         {"Data": "16/01", "Solicitante": "Mari (PO)", "Projeto": "Portal RH", "Demanda": "Ajuste Botão", "Prioridade": "Baixa", "Status": "✅ Concluído"},
         {"Data": "16/01", "Solicitante": "Você", "Projeto": "Novo Sistema", "Demanda": "Wireframe", "Prioridade": "Média", "Status": "⏳ Na Fila"},
     ]
     
-    # Criando a Tabela Visual
     df = pd.DataFrame(dados_exemplo)
     
-    # Mostrando a tabela com estilo
     st.dataframe(
         df, 
         use_container_width=True,
